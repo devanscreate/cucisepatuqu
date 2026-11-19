@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#e4e4e7"/>
+  <rect x="0" y="310" width="600" height="90" fill="#d4d4d8"/>
+  <!-- Running mesh sneaker dirty -->
+  <path d="M110 262c0-20 15-36 35-40l52-10 42-42c8-8 20-8 28 0l22 20 28-14c10-5 22-2 28 7l36 48 64 8c20 3 35 20 35 40v12H110v-29z" fill="#a1a1aa" stroke="#52525b" stroke-width="4"/>
+  <!-- Mesh pattern -->
+  <path d="M160 250h60M170 264h70M330 255h80M345 269h70" stroke="#71717a" stroke-width="3" stroke-dasharray="6 6"/>
+  <!-- Midsole dusty -->
+  <path d="M106 284h374c8 0 14 6 12 14l-4 14c-2 6-8 10-14 10H116c-8 0-14-6-14-14v-14c0-6 2-10 4-10z" fill="#cbd5e1" stroke="#52525b" stroke-width="4"/>
+  <!-- Dust patches -->
+  <ellipse cx="240" cy="258" rx="45" ry="18" fill="#78716c" opacity="0.5"/>
+  <ellipse cx="385" cy="272" rx="38" ry="15" fill="#78716c" opacity="0.55"/>
+  <text x="300" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#52525b">PLACEHOLDER FOTO SEBELUM</text>
+  <text x="300" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#71717a">Jaring mesh berdebu &amp; kusam kena hujan</text>
+</svg>

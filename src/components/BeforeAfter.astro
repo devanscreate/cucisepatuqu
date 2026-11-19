@@ -1,0 +1,183 @@
+---
+interface ComparisonCase {
+  id: string;
+  title: string;
+  treatment: string;
+  note: string;
+  beforeImage: string;
+  afterImage: string;
+  beforeAlt: string;
+  afterAlt: string;
+}
+
+/**
+ * PANDUAN GANTI FOTO ASLI:
+ * Simpan foto hasil pengerjaan berformat .webp di folder `public/images/`
+ * (rekomendasi rasio 3:2, misal 900x600px, ukuran < 120KB per foto).
+ * Lalu ganti path `.svg` di bawah menjadi path `.webp` Anda, contoh:
+ * beforeImage: '/images/kanvas-before.webp',
+ * afterImage: '/images/kanvas-after.webp',
+ */
+const cases: ComparisonCase[] = [
+  {
+    id: 'kanvas',
+    title: 'Sneakers Kanvas Putih',
+    treatment: 'Deep Clean + Unyellowing',
+    note: 'Noda lumpur di upper dan midsole kusam kembali cerah tanpa bikin kain berbulu.',
+    beforeImage: '/images/kanvas-before.svg', // Ganti ke /images/kanvas-before.webp
+    afterImage: '/images/kanvas-after.svg',   // Ganti ke /images/kanvas-after.webp
+    beforeAlt: 'Sneakers kanvas putih kotor sebelum dicuci',
+    afterAlt: 'Sneakers kanvas putih bersih sesudah dicuci',
+  },
+  {
+    id: 'mesh',
+    title: 'Sepatu Lari Mesh',
+    treatment: 'Deep Clean',
+    note: 'Debu yang masuk ke pori-pori mesh dan bau keringat hilang tuntas, serabut tetap utuh.',
+    beforeImage: '/images/mesh-before.svg', // Ganti ke /images/mesh-before.webp
+    afterImage: '/images/mesh-after.svg',   // Ganti ke /images/mesh-after.webp
+    beforeAlt: 'Sepatu lari bahan mesh berdebu sebelum dicuci',
+    afterAlt: 'Sepatu lari bahan mesh bersih sesudah dicuci',
+  },
+  {
+    id: 'suede',
+    title: 'Sneakers Bahan Suede',
+    treatment: 'Deep Clean Khusus Suede',
+    note: 'Dibersihkan minim air agar warna tidak luntur, lalu disikat ulang supaya bulu suede lembut lagi.',
+    beforeImage: '/images/suede-before.svg', // Ganti ke /images/suede-before.webp
+    afterImage: '/images/suede-after.svg',   // Ganti ke /images/suede-after.webp
+    beforeAlt: 'Sepatu bahan suede bernoda air sebelum dicuci',
+    afterAlt: 'Sepatu bahan suede bersih dan rata sesudah dicuci',
+  },
+];
+---
+
+<section id="hasil" class="bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <div class="max-w-xl">
+      <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+        Bukti Pengerjaan
+      </p>
+      <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+        Geser untuk lihat bedanya
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-zinc-600 sm:text-base">
+        Tiap bahan punya cara cuci berbeda. Tarik garis tengah ke kiri atau kanan untuk membandingkan kondisi sebelum dan sesudah dikerjakan.
+      </p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        cases.map((item) => (
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white">
+            <div
+              class="ba-slider relative aspect-[3/2] w-full overflow-hidden bg-zinc-100 select-none"
+              data-ba-container
+            >
+              {/* Gambar SESUDAH (lapisan bawah) */}
+              <img
+                src={item.afterImage}
+                alt={item.afterAlt}
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="pointer-events-none h-full w-full object-cover"
+              />
+
+              {/* Gambar SEBELUM (lapisan atas yang dipotong via clip-path) */}
+              <div
+                data-ba-before
+                class="pointer-events-none absolute inset-0"
+                style="clip-path: inset(0 50% 0 0);"
+              >
+                <img
+                  src={item.beforeImage}
+                  alt={item.beforeAlt}
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+
+              {/* Label Sebelum & Sesudah */}
+              <span class="pointer-events-none absolute top-2.5 left-2.5 rounded-md bg-zinc-900/85 px-2 py-0.5 text-[11px] font-bold tracking-wide text-white">
+                Sebelum
+              </span>
+              <span class="pointer-events-none absolute top-2.5 right-2.5 rounded-md bg-emerald-600 px-2 py-0.5 text-[11px] font-bold tracking-wide text-white">
+                Sesudah
+              </span>
+
+              {/* Garis pembatas & handle */}
+              <div
+                data-ba-divider
+                class="pointer-events-none absolute inset-y-0 w-0.5 bg-white"
+                style="left: 50%;"
+              >
+                <div class="absolute top-1/2 left-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-300 bg-white text-zinc-900 shadow-sm">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.79 5.23a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L16.44 10l-3.65-3.72a.75.75 0 0 1 0-1.05Zm-5.58 0a.75.75 0 0 1 0 1.05L3.56 10l3.65 3.72a.75.75 0 1 1-1.06 1.06L1.9 10.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Native Range Input untuk dukungan mouse, keyboard, dan touch di HP */}
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                data-ba-input
+                aria-label={`Geser perbandingan sebelum dan sesudah untuk ${item.title}`}
+                class="ba-range absolute inset-0 z-10 h-full w-full"
+              />
+            </div>
+
+            <div class="flex flex-1 flex-col p-4">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-base font-bold text-zinc-900">{item.title}</h3>
+              </div>
+              <p class="mt-1 text-xs font-semibold text-emerald-700">{item.treatment}</p>
+              <p class="mt-2 text-sm leading-relaxed text-zinc-600">{item.note}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const containers = document.querySelectorAll<HTMLElement>('[data-ba-container]');
+
+  containers.forEach((container) => {
+    const input = container.querySelector<HTMLInputElement>('[data-ba-input]');
+    const beforeLayer = container.querySelector<HTMLElement>('[data-ba-before]');
+    const divider = container.querySelector<HTMLElement>('[data-ba-divider]');
+
+    if (!input || !beforeLayer || !divider) return;
+
+    const updatePosition = () => {
+      const value = Number(input.value);
+      const rightInset = 100 - value;
+      beforeLayer.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
+      divider.style.left = `${value}%`;
+    };
+
+    input.addEventListener('input', updatePosition);
+    input.addEventListener('change', updatePosition);
+    updatePosition();
+  });
+</script>

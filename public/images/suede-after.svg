@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#f4f4f5"/>
+  <rect x="0" y="310" width="600" height="90" fill="#e4e4e7"/>
+  <!-- Suede sneaker restored -->
+  <path d="M118 268c0-18 14-34 32-38l48-8 44-46c7-7 18-7 25 0l20 18 24-12c8-4 18-2 24 5l36 44h58c24 0 43 19 43 43v16H118v-22z" fill="#a88b73" stroke="#18181b" stroke-width="4"/>
+  <!-- Subtle brushed texture -->
+  <path d="M180 252h22M240 242h24M330 256h28" stroke="#c7b299" stroke-width="3" stroke-linecap="round"/>
+  <!-- Midsole clean -->
+  <rect x="114" y="286" width="362" height="26" rx="8" fill="#fafaf9" stroke="#18181b" stroke-width="4"/>
+  <path d="M448 190l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12z" fill="#059669"/>
+  <text x="300" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#059669">PLACEHOLDER FOTO SESUDAH</text>
+  <text x="300" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#3f3f46">Warna suede rata &amp; tekstur kembali halus</text>
+</svg>

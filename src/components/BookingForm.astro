@@ -1,0 +1,427 @@
+---
+import { services } from '../data/services';
+import { siteConfig } from '../data/siteConfig';
+
+const defaultService = services.find((s) => s.isPopular) ?? services[0];
+---
+
+<section id="booking" class="border-t border-zinc-200 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+          Form Pemesanan
+        </p>
+        <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+          Pesan cuci dalam 1 menit
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-zinc-600 sm:text-base">
+          Isi data singkat di bawah, lalu kamu langsung diarahkan ke WhatsApp kami dengan format pesanan yang sudah rapi. Tanpa perlu bikin akun.
+        </p>
+
+        <div class="mt-6 space-y-3 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-700">
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+              1
+            </span>
+            <p>Pilih layanan &amp; metode (Antar-Jemput atau Drop-off).</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+              2
+            </span>
+            <p>Kirim pesanan ke WhatsApp, admin konfirmasi jadwal jemput.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+              3
+            </span>
+            <p>Sepatu dicuci manual, lalu diantar kembali dalam kondisi bersih &amp; wangi.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <form
+          id="booking-form"
+          novalidate
+          data-whatsapp={siteConfig.whatsapp}
+          data-brand={siteConfig.brandName}
+          class="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-7"
+        >
+          <div class="space-y-5">
+            <!-- Nama Lengkap -->
+            <div>
+              <label for="booking-name" class="block text-sm font-semibold text-zinc-900">
+                Nama Lengkap <span class="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="booking-name"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder="Contoh: Dimas Pratama"
+                class="mt-1.5 block w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 focus:outline-none"
+              />
+            </div>
+
+            <!-- Pilih Layanan & Jumlah Pasang -->
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+              <div class="sm:col-span-2">
+                <label for="booking-service" class="block text-sm font-semibold text-zinc-900">
+                  Pilih Layanan <span class="text-red-600">*</span>
+                </label>
+                <select
+                  id="booking-service"
+                  name="service"
+                  required
+                  class="mt-1.5 block w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm font-medium text-zinc-900 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 focus:outline-none"
+                >
+                  {
+                    services.map((service) => (
+                      <option
+                        value={service.id}
+                        selected={service.id === defaultService.id}
+                        data-price={service.price}
+                        data-name={service.name}
+                        data-eta={service.eta}
+                        data-starting={service.priceLabel.startsWith('Mulai') ? 'true' : 'false'}
+                      >
+                        {service.name} — {service.priceLabel} ({service.eta})
+                      </option>
+                    ))
+                  }
+                </select>
+              </div>
+
+              <div>
+                <label for="booking-qty" class="block text-sm font-semibold text-zinc-900">
+                  Jumlah Pasang <span class="text-red-600">*</span>
+                </label>
+                <div class="mt-1.5 flex items-center rounded-xl border border-zinc-300 bg-white">
+                  <button
+                    type="button"
+                    id="qty-minus"
+                    aria-label="Kurangi jumlah pasang"
+                    class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center text-lg font-bold text-zinc-700 hover:bg-zinc-100 rounded-l-xl"
+                  >
+                    −
+                  </button>
+                  <input
+                    type="number"
+                    id="booking-qty"
+                    name="qty"
+                    min="1"
+                    max="99"
+                    value="1"
+                    required
+                    inputmode="numeric"
+                    class="w-full border-x border-zinc-200 py-2 text-center text-sm font-bold text-zinc-900 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    id="qty-plus"
+                    aria-label="Tambah jumlah pasang"
+                    class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center text-lg font-bold text-zinc-700 hover:bg-zinc-100 rounded-r-xl"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metode -->
+            <fieldset>
+              <legend class="block text-sm font-semibold text-zinc-900">
+                Metode Penyerahan <span class="text-red-600">*</span>
+              </legend>
+              <div class="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-zinc-300 p-3.5 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/60">
+                  <input
+                    type="radio"
+                    name="method"
+                    value="Antar-Jemput"
+                    checked
+                    class="mt-0.5 h-4 w-4 accent-emerald-600"
+                  />
+                  <div>
+                    <span class="block text-sm font-bold text-zinc-900">Antar-Jemput</span>
+                    <span class="block text-xs text-zinc-600">Kurir jemput &amp; antar ke alamatmu</span>
+                  </div>
+                </label>
+
+                <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-zinc-300 p-3.5 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/60">
+                  <input
+                    type="radio"
+                    name="method"
+                    value="Drop-off ke Workshop"
+                    class="mt-0.5 h-4 w-4 accent-emerald-600"
+                  />
+                  <div>
+                    <span class="block text-sm font-bold text-zinc-900">Drop-off ke Workshop</span>
+                    <span class="block text-xs text-zinc-600">Antar langsung ke lokasi kami</span>
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Alamat / Patokan (Wajib jika Antar-Jemput) -->
+            <div id="address-group">
+              <label for="booking-address" class="block text-sm font-semibold text-zinc-900">
+                Alamat Lengkap &amp; Patokan <span class="text-red-600">*</span>
+              </label>
+              <textarea
+                id="booking-address"
+                name="address"
+                rows="3"
+                required
+                placeholder="Contoh: Jl. Tebet Barat Dalam No. 8, rumah pagar hitam samping minimarket"
+                class="mt-1.5 block w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 focus:outline-none"
+              ></textarea>
+            </div>
+
+            <!-- Info alamat workshop saat pilih Drop-off -->
+            <div
+              id="dropoff-info"
+              class="hidden rounded-xl border border-zinc-200 bg-zinc-50 p-3.5 text-xs leading-relaxed text-zinc-700"
+            >
+              <p class="font-bold text-zinc-900">Alamat Workshop {siteConfig.brandName}:</p>
+              <p class="mt-0.5">{siteConfig.address}</p>
+              <p class="mt-0.5 text-zinc-500">Buka: {siteConfig.hours}</p>
+            </div>
+
+            <!-- Jenis / Bahan Sepatu & Catatan (Opsional) -->
+            <div>
+              <label for="booking-notes" class="block text-sm font-semibold text-zinc-900">
+                Jenis/Bahan Sepatu &amp; Catatan
+                <span class="font-normal text-zinc-500">(Opsional)</span>
+              </label>
+              <textarea
+                id="booking-notes"
+                name="notes"
+                rows="2"
+                placeholder="Contoh: NB 574 bahan suede abu-abu, ada noda kopi di ujung kiri"
+                class="mt-1.5 block w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 focus:outline-none"
+              ></textarea>
+            </div>
+
+            <!-- Estimasi Total Harga Real-time -->
+            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
+              <div class="flex items-center justify-between gap-2">
+                <span id="estimate-label" class="text-sm font-semibold text-zinc-700">
+                  Estimasi Total
+                </span>
+                <span
+                  id="estimate-total"
+                  class="text-xl font-extrabold tracking-tight text-zinc-900"
+                >
+                  Rp50.000
+                </span>
+              </div>
+              <p id="estimate-detail" class="mt-1 text-xs text-zinc-500">
+                Deep Clean × 1 pasang. Belum termasuk ongkir (jika di luar radius gratis jemput).
+              </p>
+            </div>
+
+            <!-- Pesan Error Validasi -->
+            <div
+              id="booking-error"
+              role="alert"
+              class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+            ></div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              id="booking-submit-btn"
+              class="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-base font-bold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-5 w-5 shrink-0"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2Zm5.78 14.08c-.24.68-1.42 1.3-1.97 1.38-.51.08-1.15.11-1.85-.11-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.77-2.18 1.04-2.48.27-.3.59-.37.79-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.24.59.84 2.04.91 2.19.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.61.17.3.77 1.27 1.65 2.05 1.13 1.01 2.09 1.32 2.39 1.47.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.96.3.15.5.22.57.34.07.12.07.72-.17 1.4Z"
+                />
+              </svg>
+              <span>Kirim Pesanan via WhatsApp</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('booking-form') as HTMLFormElement | null;
+  const nameInput = document.getElementById('booking-name') as HTMLInputElement | null;
+  const serviceSelect = document.getElementById('booking-service') as HTMLSelectElement | null;
+  const qtyInput = document.getElementById('booking-qty') as HTMLInputElement | null;
+  const qtyMinus = document.getElementById('qty-minus') as HTMLButtonElement | null;
+  const qtyPlus = document.getElementById('qty-plus') as HTMLButtonElement | null;
+  const methodRadios = document.querySelectorAll<HTMLInputElement>('input[name="method"]');
+  const addressGroup = document.getElementById('address-group');
+  const addressInput = document.getElementById('booking-address') as HTMLTextAreaElement | null;
+  const dropoffInfo = document.getElementById('dropoff-info');
+  const notesInput = document.getElementById('booking-notes') as HTMLTextAreaElement | null;
+  const estimateLabel = document.getElementById('estimate-label');
+  const estimateTotal = document.getElementById('estimate-total');
+  const estimateDetail = document.getElementById('estimate-detail');
+  const errorBox = document.getElementById('booking-error');
+
+  const formatRupiah = (amount: number): string =>
+    `Rp${new Intl.NumberFormat('id-ID').format(amount)}`;
+
+  const getSelectedMethod = (): string => {
+    const checked = document.querySelector<HTMLInputElement>('input[name="method"]:checked');
+    return checked ? checked.value : 'Antar-Jemput';
+  };
+
+  const getSelectedOption = (): HTMLOptionElement | null => {
+    if (!serviceSelect) return null;
+    return serviceSelect.options[serviceSelect.selectedIndex] ?? null;
+  };
+
+  const updateEstimate = () => {
+    const option = getSelectedOption();
+    if (!option || !qtyInput || !estimateTotal || !estimateDetail || !estimateLabel) return;
+
+    const unitPrice = Number(option.dataset.price ?? 0);
+    const serviceName = option.dataset.name ?? option.textContent ?? '';
+    const isStarting = option.dataset.starting === 'true';
+
+    let qty = parseInt(qtyInput.value, 10);
+    if (Number.isNaN(qty) || qty < 1) qty = 1;
+
+    const total = unitPrice * qty;
+    estimateLabel.textContent = isStarting ? 'Estimasi Total (Mulai)' : 'Estimasi Total';
+    estimateTotal.textContent = `${isStarting ? 'Mulai ' : ''}${formatRupiah(total)}`;
+    estimateDetail.textContent = `${serviceName} × ${qty} pasang. Konfirmasi akhir dilakukan admin saat cek kondisi sepatu.`;
+  };
+
+  const updateMethodUI = () => {
+    const method = getSelectedMethod();
+    const isPickup = method === 'Antar-Jemput';
+
+    if (addressGroup && addressInput && dropoffInfo) {
+      addressGroup.classList.toggle('hidden', !isPickup);
+      addressInput.required = isPickup;
+      dropoffInfo.classList.toggle('hidden', isPickup);
+    }
+  };
+
+  const showError = (msg: string) => {
+    if (!errorBox) return;
+    errorBox.textContent = msg;
+    errorBox.classList.remove('hidden');
+  };
+
+  const clearError = () => {
+    if (!errorBox) return;
+    errorBox.textContent = '';
+    errorBox.classList.add('hidden');
+  };
+
+  qtyMinus?.addEventListener('click', () => {
+    if (!qtyInput) return;
+    const current = parseInt(qtyInput.value, 10) || 1;
+    qtyInput.value = String(Math.max(1, current - 1));
+    updateEstimate();
+  });
+
+  qtyPlus?.addEventListener('click', () => {
+    if (!qtyInput) return;
+    const current = parseInt(qtyInput.value, 10) || 1;
+    qtyInput.value = String(Math.min(99, current + 1));
+    updateEstimate();
+  });
+
+  qtyInput?.addEventListener('input', updateEstimate);
+  qtyInput?.addEventListener('blur', () => {
+    if (!qtyInput) return;
+    const val = parseInt(qtyInput.value, 10);
+    if (Number.isNaN(val) || val < 1) {
+      qtyInput.value = '1';
+      updateEstimate();
+    }
+  });
+
+  serviceSelect?.addEventListener('change', updateEstimate);
+  methodRadios.forEach((radio) => radio.addEventListener('change', updateMethodUI));
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    clearError();
+
+    const name = nameInput?.value.trim() ?? '';
+    const option = getSelectedOption();
+    const qty = parseInt(qtyInput?.value ?? '0', 10);
+    const method = getSelectedMethod();
+    const address = addressInput?.value.trim() ?? '';
+    const notes = notesInput?.value.trim() ?? '';
+
+    if (!name) {
+      showError('Mohon isi Nama Lengkap terlebih dahulu.');
+      nameInput?.focus();
+      return;
+    }
+
+    if (!option) {
+      showError('Mohon pilih layanan terlebih dahulu.');
+      serviceSelect?.focus();
+      return;
+    }
+
+    if (Number.isNaN(qty) || qty < 1) {
+      showError('Jumlah pasang minimal 1.');
+      qtyInput?.focus();
+      return;
+    }
+
+    if (method === 'Antar-Jemput' && !address) {
+      showError('Mohon isi Alamat Lengkap & Patokan untuk layanan Antar-Jemput.');
+      addressInput?.focus();
+      return;
+    }
+
+    const brand = form.dataset.brand ?? 'KicksClean';
+    const whatsapp = form.dataset.whatsapp ?? '';
+    const serviceName = option.dataset.name ?? '';
+    const unitPrice = Number(option.dataset.price ?? 0);
+    const isStarting = option.dataset.starting === 'true';
+    const totalFormatted = `${isStarting ? 'Mulai ' : ''}${formatRupiah(unitPrice * qty)}`;
+
+    const lines = [
+      `Halo ${brand}, saya mau pesan cuci sepatu:`,
+      '',
+      `Nama: ${name}`,
+      `Layanan: ${serviceName}`,
+      `Jumlah: ${qty} pasang`,
+      `Estimasi Total: ${totalFormatted}`,
+      `Metode: ${method}`,
+    ];
+
+    if (method === 'Antar-Jemput') {
+      lines.push(`Alamat/Patokan: ${address}`);
+    }
+
+    if (notes) {
+      lines.push(`Bahan/Catatan: ${notes}`);
+    }
+
+    lines.push('', 'Mohon info jadwal selanjutnya ya. Terima kasih!');
+
+    const encodedMessage = encodeURIComponent(lines.join('\n'));
+    const waUrl = `https://wa.me/${whatsapp}?text=${encodedMessage}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  });
+
+  // Inisialisasi tampilan awal
+  updateMethodUI();
+  updateEstimate();
+</script>

@@ -1,0 +1,31 @@
+---
+import { siteConfig } from '../data/siteConfig';
+---
+
+<header class="sticky top-0 z-40 border-b border-zinc-200 bg-white">
+  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+    <a
+      href="#top"
+      class="inline-flex items-center gap-2 text-lg font-extrabold tracking-tight text-zinc-900"
+    >
+      <span
+        class="inline-block h-2.5 w-2.5 rounded-full bg-emerald-600"
+        aria-hidden="true"
+      ></span>
+      <span>{siteConfig.brandName}</span>
+    </a>
+
+    <nav aria-label="Navigasi utama" class="hidden items-center gap-6 text-sm font-medium text-zinc-600 sm:flex">
+      <a href="#hasil" class="transition-colors hover:text-zinc-900">Hasil Cuci</a>
+      <a href="#harga" class="transition-colors hover:text-zinc-900">Daftar Harga</a>
+      <a href="#lokasi-faq" class="transition-colors hover:text-zinc-900">Lokasi &amp; FAQ</a>
+    </nav>
+
+    <a
+      href="#booking"
+      class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+    >
+      Pesan Jemput
+    </a>
+  </div>
+</header>

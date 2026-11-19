@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#e7e5e4"/>
+  <rect x="0" y="310" width="600" height="90" fill="#d6d3d1"/>
+  <!-- Suede sneaker stained -->
+  <path d="M118 268c0-18 14-34 32-38l48-8 44-46c7-7 18-7 25 0l20 18 24-12c8-4 18-2 24 5l36 44h58c24 0 43 19 43 43v16H118v-22z" fill="#b5a392" stroke="#78716c" stroke-width="4"/>
+  <!-- Watermark / dark stain on suede -->
+  <ellipse cx="220" cy="248" rx="44" ry="20" fill="#7c6855" opacity="0.7"/>
+  <ellipse cx="360" cy="258" rx="52" ry="18" fill="#6b5847" opacity="0.65"/>
+  <!-- Midsole -->
+  <rect x="114" y="286" width="362" height="26" rx="8" fill="#d6cfc2" stroke="#78716c" stroke-width="4"/>
+  <text x="300" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#57534e">PLACEHOLDER FOTO SEBELUM</text>
+  <text x="300" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#78716c">Bulu suede kaku &amp; bercak air</text>
+</svg>

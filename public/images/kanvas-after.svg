@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#f4f4f5"/>
+  <rect x="0" y="310" width="600" height="90" fill="#e4e4e7"/>
+  <!-- Clean white canvas sneaker silhouette -->
+  <path d="M115 270c0-18 14-34 32-38l48-10 46-46c7-7 18-7 25 0l18 18 22-14c8-5 19-3 25 5l34 45h62c24 0 43 19 43 43v17H115v-20z" fill="#ffffff" stroke="#18181b" stroke-width="4"/>
+  <!-- Midsole bright white -->
+  <rect x="112" y="286" width="362" height="28" rx="10" fill="#ffffff" stroke="#18181b" stroke-width="4"/>
+  <line x1="126" y1="300" x2="460" y2="300" stroke="#e4e4e7" stroke-width="3" stroke-linecap="round"/>
+  <!-- Laces clean -->
+  <path d="M275 208l26 14M295 196l26 14M315 186l24 14" stroke="#18181b" stroke-width="5" stroke-linecap="round"/>
+  <!-- Subtle clean sparkle -->
+  <path d="M445 190l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12z" fill="#059669"/>
+  <text x="300" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#059669">PLACEHOLDER FOTO SESUDAH</text>
+  <text x="300" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#3f3f46">Kanvas kembali putih cerah &amp; bebas noda</text>
+</svg>

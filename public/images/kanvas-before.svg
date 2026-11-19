@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#e7e5e4"/>
+  <rect x="0" y="310" width="600" height="90" fill="#d6d3d1"/>
+  <!-- Dirty canvas sneaker silhouette -->
+  <path d="M115 270c0-18 14-34 32-38l48-10 46-46c7-7 18-7 25 0l18 18 22-14c8-5 19-3 25 5l34 45h62c24 0 43 19 43 43v17H115v-20z" fill="#d6d3d1" stroke="#78716c" stroke-width="4"/>
+  <!-- Midsole yellowed -->
+  <rect x="112" y="286" width="362" height="28" rx="10" fill="#d4c7a1" stroke="#78716c" stroke-width="4"/>
+  <!-- Dirt / mud stains -->
+  <ellipse cx="210" cy="255" rx="34" ry="16" fill="#a8a29e" opacity="0.7"/>
+  <ellipse cx="340" cy="264" rx="42" ry="14" fill="#8c7a6b" opacity="0.55"/>
+  <circle cx="425" cy="272" r="16" fill="#9a8470" opacity="0.6"/>
+  <ellipse cx="265" cy="298" rx="48" ry="8" fill="#a18a62" opacity="0.65"/>
+  <circle cx="165" cy="296" r="9" fill="#8c7a6b" opacity="0.6"/>
+  <!-- Laces -->
+  <path d="M275 208l26 14M295 196l26 14M315 186l24 14" stroke="#78716c" stroke-width="5" stroke-linecap="round"/>
+  <text x="300" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#57534e">PLACEHOLDER FOTO SEBELUM</text>
+  <text x="300" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#78716c">Kanvas putih kusam + noda lumpur</text>
+</svg>
