@@ -4,7 +4,7 @@ import { services } from '../data/services';
 
 <section id="harga" class="border-t border-zinc-200 bg-zinc-50 py-14 sm:py-20">
   <div class="mx-auto max-w-5xl px-4 sm:px-6">
-    <div class="max-w-xl">
+    <div class="max-w-xl" data-reveal>
       <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
         Daftar Layanan &amp; Harga
       </p>
@@ -18,13 +18,15 @@ import { services } from '../data/services';
 
     <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {
-        services.map((service) => (
+        services.map((service, idx) => (
           <article
+            data-reveal
+            style={`--reveal-delay: ${idx * 70}ms;`}
             class:list={[
-              'relative flex flex-col justify-between rounded-2xl bg-white p-6',
+              'relative flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5',
               service.isPopular
                 ? 'border-2 border-emerald-600'
-                : 'border border-zinc-200',
+                : 'border border-zinc-200 hover:border-zinc-300',
             ]}
           >
             <div>
@@ -64,13 +66,34 @@ import { services } from '../data/services';
               <p class="mt-4 text-sm leading-relaxed text-zinc-600">
                 {service.description}
               </p>
+
+              <ul class="mt-4 space-y-2 border-t border-zinc-100 pt-4 text-xs text-zinc-700">
+                {service.highlights.map((point) => (
+                  <li class="flex items-start gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <button
               type="button"
               data-select-service={service.id}
               class:list={[
-                'mt-6 inline-flex w-full cursor-pointer items-center justify-center rounded-xl px-4 py-3 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600',
+                'mt-6 inline-flex w-full cursor-pointer items-center justify-center rounded-xl px-4 py-3 text-sm font-bold transition-all active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600',
                 service.isPopular
                   ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                   : 'bg-zinc-900 text-white hover:bg-emerald-600',
@@ -91,17 +114,18 @@ import { services } from '../data/services';
   selectButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const serviceId = btn.dataset.selectService;
-      const serviceSelect = document.getElementById('booking-service') as HTMLSelectElement | null;
-      const bookingSection = document.getElementById('booking');
+      if (!serviceId) return;
 
-      if (serviceSelect && serviceId) {
-        serviceSelect.value = serviceId;
-        serviceSelect.dispatchEvent(new Event('change', { bubbles: true }));
-      }
+      window.dispatchEvent(
+        new CustomEvent('kicksclean:prefill', {
+          detail: { serviceId },
+        })
+      );
 
-      if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      document.getElementById('booking')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     });
   });
 </script>

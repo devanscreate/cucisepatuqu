@@ -1,0 +1,155 @@
+---
+import { siteConfig } from '../data/siteConfig';
+
+const comparisons = [
+  {
+    aspect: 'Cara Pengeringan',
+    ordinary: 'Dijemur matahari langsung (lem cepat getas & warna pudar)',
+    ours: 'Blower suhu ruang + silica gel agar lem dan warna awet',
+  },
+  {
+    aspect: 'Bahan Suede & Nubuck',
+    ordinary: 'Direndam air & disikat kasar (bulu jadi kaku atau belang)',
+    ours: 'Minim air + cairan pH netral + sikat bulu halus khusus',
+  },
+  {
+    aspect: 'Kabar Pengerjaan',
+    ordinary: 'Tidak ada kabar sampai selesai, baru tahu hasilnya pas sampai',
+    ours: 'Foto kondisi awal & hasil akhir dikirim ke WA dulu untuk kamu ACC',
+  },
+  {
+    aspect: 'Kalau Kurang Bersih',
+    ordinary: 'Sudah selesai dianggap beres, tidak ada jaminan',
+    ours: 'Garansi cuci ulang gratis dalam 48 jam kalau masih ada noda terlewat',
+  },
+];
+
+const steps = [
+  {
+    num: '01',
+    title: 'Pesan 1 Menit',
+    desc: 'Pilih paket di bawah dan kirim format pesanan ke WhatsApp. Tanpa bikin akun, tanpa DP untuk cuci standar.',
+  },
+  {
+    num: '02',
+    title: 'Kurir Jemput di Rumah',
+    desc: 'Kurir datang sesuai jadwal. Lagi sibuk di kantor atau kos? Bisa titip di satpam atau resepsionis.',
+  },
+  {
+    num: '03',
+    title: 'Cuci Manual & Foto WA',
+    desc: 'Sepatu dicek, dicuci manual sesuai bahan, lalu foto hasil akhirnya dikirim ke WA untuk kamu ACC.',
+  },
+  {
+    num: '04',
+    title: 'Antar Balik & Bayar',
+    desc: 'Sepatu diantar kembali dalam kondisi bersih, kering, dan wangi. Pembayaran bisa transfer, QRIS, atau tunai.',
+  },
+];
+---
+
+<section class="border-t border-zinc-200 bg-white py-14 sm:py-20">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <!-- Bagian 1: Perbandingan Jujur -->
+    <div class="max-w-xl" data-reveal>
+      <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+        Kenapa Harus {siteConfig.brandName}?
+      </p>
+      <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+        Beda cara cuci, beda juga awetnya sepatu
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-zinc-600 sm:text-base">
+        Banyak sepatu rusak bukan karena sering dipakai, tapi karena salah teknik cuci dan pengeringan. Ini standar pengerjaan kami:
+      </p>
+    </div>
+
+    <div
+      data-reveal
+      style="--reveal-delay: 80ms;"
+      class="mt-8 overflow-hidden rounded-2xl border border-zinc-200 bg-white"
+    >
+      <!-- Header desktop -->
+      <div class="hidden grid-cols-12 border-b border-zinc-200 bg-zinc-50 px-5 py-3.5 text-xs font-bold uppercase tracking-wider sm:grid">
+        <div class="col-span-3 text-zinc-500">Aspek</div>
+        <div class="col-span-4 text-zinc-500">Cuci Sepatu Asal</div>
+        <div class="col-span-5 text-emerald-700">Standar {siteConfig.brandName}</div>
+      </div>
+
+      <div class="divide-y divide-zinc-200">
+        {
+          comparisons.map((row) => (
+            <div class="grid grid-cols-1 gap-3 p-5 sm:grid-cols-12 sm:items-center sm:gap-4">
+              <div class="sm:col-span-3">
+                <p class="text-sm font-extrabold text-zinc-900">{row.aspect}</p>
+              </div>
+
+              <div class="flex items-start gap-2 text-sm text-zinc-500 sm:col-span-4">
+                <span
+                  class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-bold text-zinc-500"
+                  aria-hidden="true"
+                >
+                  ✕
+                </span>
+                <p class="leading-relaxed">
+                  <span class="font-semibold text-zinc-600 sm:hidden">Cuci asal: </span>
+                  {row.ordinary}
+                </p>
+              </div>
+
+              <div class="flex items-start gap-2 rounded-xl bg-emerald-50/70 p-3 text-sm font-medium text-zinc-900 sm:col-span-5 sm:bg-transparent sm:p-0">
+                <span
+                  class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white"
+                  aria-hidden="true"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-3.5 w-3.5"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <p class="leading-relaxed">{row.ours}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Bagian 2: Alur 4 Langkah -->
+    <div class="mt-14 sm:mt-16">
+      <div class="max-w-xl" data-reveal>
+        <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+          Cara Kerja
+        </p>
+        <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+          Dari kotor sampai balik bersih, begini alurnya
+        </h2>
+      </div>
+
+      <ol class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          steps.map((step, idx) => (
+            <li
+              data-reveal
+              style={`--reveal-delay: ${idx * 75}ms;`}
+              class="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 transition-colors hover:border-emerald-600/50"
+            >
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-xs font-extrabold text-white">
+                {step.num}
+              </span>
+              <h3 class="mt-3.5 text-base font-bold text-zinc-900">{step.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-zinc-600">{step.desc}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

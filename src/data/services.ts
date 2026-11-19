@@ -5,6 +5,7 @@ export interface ServiceItem {
   priceLabel: string;
   eta: string;
   description: string;
+  highlights: string[];
   isPopular: boolean;
 }
 
@@ -16,6 +17,11 @@ export const services: ServiceItem[] = [
     priceLabel: 'Rp30.000',
     eta: '1 Hari',
     description: 'Cuci cepat bagian upper & midsole, cocok untuk kotoran ringan.',
+    highlights: [
+      'Pembersihan bagian upper & midsole',
+      'Cocok untuk debu pemakaian harian',
+      'Pengeringan blower suhu ruang',
+    ],
     isPopular: false,
   },
   {
@@ -26,6 +32,11 @@ export const services: ServiceItem[] = [
     eta: '2–3 Hari',
     description:
       'Cuci menyeluruh luar-dalam + deodorizer. Aman untuk suede, mesh, dan canvas.',
+    highlights: [
+      'Cuci total upper, midsole, outsole, insole & tali',
+      'Cairan pH netral + anti-bakteri & deodorizer',
+      'Update foto hasil via WA + garansi cuci ulang',
+    ],
     isPopular: true,
   },
   {
@@ -35,6 +46,11 @@ export const services: ServiceItem[] = [
     priceLabel: 'Rp65.000',
     eta: '3 Hari',
     description: 'Menghilangkan noda kuning oksidasi pada midsole.',
+    highlights: [
+      'Treatment khusus midsole karet menguning',
+      'Sudah termasuk cuci dasar area midsole',
+      'Aman tanpa merusak tekstur karet sol',
+    ],
     isPopular: false,
   },
   {
@@ -44,6 +60,11 @@ export const services: ServiceItem[] = [
     priceLabel: 'Mulai Rp45.000',
     eta: '3–4 Hari',
     description: 'Perbaikan lem ulang sol yang menganga atau lepas.',
+    highlights: [
+      'Pembersihan sisa lem lama sebelum direkatkan',
+      'Lem khusus sepatu tahan lentur & tidak getas',
+      'Press rapat & rapi di bagian pinggir sol',
+    ],
     isPopular: false,
   },
   {
@@ -53,6 +74,11 @@ export const services: ServiceItem[] = [
     priceLabel: 'Mulai Rp120.000',
     eta: '5–7 Hari',
     description: 'Cat ulang warna upper yang pudar agar kembali pekat.',
+    highlights: [
+      'Cat khusus bahan canvas, suede, atau kulit',
+      'Finishing matte/natural agar tidak kaku',
+      'Konfirmasi warna dulu via WA sebelum dikerjakan',
+    ],
     isPopular: false,
   },
 ];
