@@ -53,28 +53,134 @@ details > summary::-webkit-details-marker {
 /* Subtle cleaning bubble rise animation (Hero background) */
 @keyframes bubble-rise {
   0% {
-    transform: translateY(18px) scale(0.92);
+    transform: translate3d(0, 20px, 0) scale(0.88);
     opacity: 0;
   }
   20% {
-    opacity: 0.65;
+    opacity: 0.7;
   }
   80% {
     opacity: 0.45;
   }
   100% {
-    transform: translateY(-110px) scale(1.08);
+    transform: translate3d(0, -120px, 0) scale(1.1);
     opacity: 0;
   }
 }
 
 .clean-bubble {
   animation: bubble-rise var(--bubble-duration, 9s) ease-in-out var(--bubble-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* Hero Sneaker Levitation (GPU transform only) */
+@keyframes shoe-float {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(-3deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(-1deg);
+  }
+}
+
+.shoe-float {
+  animation: shoe-float 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes shoe-shadow-pulse {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scaleX(0.84);
+    opacity: 0.12;
+  }
+}
+
+.shoe-shadow {
+  animation: shoe-shadow-pulse 4.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Hero Live Dirty-to-Clean Sweep Beam */
+@keyframes clean-sweep-clip {
+  0%, 12% {
+    clip-path: inset(0 100% 0 0);
+  }
+  45%, 65% {
+    clip-path: inset(0 0% 0 0);
+  }
+  92%, 100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes clean-sweep-beam {
+  0%, 12% {
+    left: 0%;
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  45% {
+    left: 100%;
+    opacity: 1;
+  }
+  49%, 65% {
+    left: 100%;
+    opacity: 0;
+  }
+  69% {
+    opacity: 0.85;
+  }
+  92% {
+    left: 0%;
+    opacity: 0.85;
+  }
+  96%, 100% {
+    left: 0%;
+    opacity: 0;
+  }
+}
+
+.clean-sweep-layer {
+  animation: clean-sweep-clip 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: clip-path;
+}
+
+.clean-sweep-beam {
+  animation: clean-sweep-beam 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: left, opacity;
+}
+
+/* Popping cleanliness sparkles */
+@keyframes sparkle-pop {
+  0%, 25%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(25deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95) rotate(45deg);
+    opacity: 0.85;
+  }
+}
+
+.sparkle-pop {
+  animation: sparkle-pop 5.2s ease-in-out var(--sparkle-delay, 0s) infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 
 /* Clean shine sweep across primary CTA button */
 @keyframes cta-shine {
-  0%, 72% {
+  0%, 70% {
     transform: translateX(-140%) skewX(-20deg);
   }
   100% {
@@ -95,26 +201,53 @@ details > summary::-webkit-details-marker {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.32) 50%,
     transparent 100%
   );
   transform: translateX(-140%) skewX(-20deg);
-  animation: cta-shine 4.8s ease-in-out infinite;
+  animation: cta-shine 4.2s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Scroll reveal (staggered entrance) */
+/* Infinite smooth USP Marquee (pure CSS GPU translate3d) */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Dynamic spring scroll reveal */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translate3d(0, 26px, 0) scale(0.97);
   transition:
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Interactive 3D micro-tilt card smoothing */
+[data-tilt] {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  transform-style: preserve-3d;
 }
 
 /* Price update pop animation */
@@ -123,7 +256,7 @@ details > summary::-webkit-details-marker {
     transform: scale(1);
   }
   40% {
-    transform: scale(1.07);
+    transform: scale(1.09);
     color: #059669;
   }
   100% {
@@ -132,7 +265,7 @@ details > summary::-webkit-details-marker {
 }
 
 .is-popping {
-  animation: price-pop 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: price-pop 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Form field emerald highlight pulse when auto-filled */
@@ -154,6 +287,29 @@ details > summary::-webkit-details-marker {
   animation: field-highlight 0.9s ease-out;
 }
 
+/* Click sparkle burst particle */
+@keyframes burst-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by))) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.burst-particle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: #059669;
+  pointer-events: none;
+  z-index: 60;
+  animation: burst-fly 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -161,10 +317,25 @@ details > summary::-webkit-details-marker {
   }
 
   .clean-bubble,
+  .shoe-float,
+  .shoe-shadow,
+  .clean-sweep-layer,
+  .clean-sweep-beam,
+  .sparkle-pop,
   .cta-shine::after,
+  .marquee-track,
   .is-popping,
-  .is-highlighted {
+  .is-highlighted,
+  .burst-particle {
     animation: none !important;
+  }
+
+  .clean-sweep-layer {
+    clip-path: inset(0 0 0 0) !important;
+  }
+
+  .clean-sweep-beam {
+    opacity: 0 !important;
   }
 
   [data-reveal] {

@@ -21,9 +21,10 @@ import { services } from '../data/services';
         services.map((service, idx) => (
           <article
             data-reveal
+            data-tilt
             style={`--reveal-delay: ${idx * 70}ms;`}
             class:list={[
-              'relative flex flex-col justify-between rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5',
+              'relative flex flex-col justify-between rounded-2xl bg-white p-6 shadow-sm hover:shadow-md',
               service.isPopular
                 ? 'border-2 border-emerald-600'
                 : 'border border-zinc-200 hover:border-zinc-300',
@@ -92,6 +93,7 @@ import { services } from '../data/services';
             <button
               type="button"
               data-select-service={service.id}
+              data-burst
               class:list={[
                 'mt-6 inline-flex w-full cursor-pointer items-center justify-center rounded-xl px-4 py-3 text-sm font-bold transition-all active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600',
                 service.isPopular
