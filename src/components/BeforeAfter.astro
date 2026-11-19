@@ -14,16 +14,14 @@ interface ComparisonCase {
  * PANDUAN GANTI FOTO ASLI:
  * Simpan foto hasil pengerjaan berformat .webp di folder `public/images/`
  * (rekomendasi rasio 3:2, misal 900x600px, ukuran < 120KB per foto).
- * Lalu ganti path `.svg` di bawah menjadi path `.webp` Anda, contoh:
- * beforeImage: '/images/kanvas-before.webp',
- * afterImage: '/images/kanvas-after.webp',
+ * Lalu ganti path `.svg` di bawah menjadi path `.webp` Anda.
  */
 const cases: ComparisonCase[] = [
   {
     id: 'kanvas',
     title: 'Sneakers Kanvas Putih',
     treatment: 'Deep Clean + Unyellowing',
-    note: 'Noda lumpur di upper dan midsole kusam kembali cerah tanpa bikin kain berbulu.',
+    note: 'Noda lumpur & midsole kusam kembali cerah.',
     beforeImage: '/images/kanvas-before.svg', // Ganti ke /images/kanvas-before.webp
     afterImage: '/images/kanvas-after.svg',   // Ganti ke /images/kanvas-after.webp
     beforeAlt: 'Sneakers kanvas putih kotor sebelum dicuci',
@@ -33,7 +31,7 @@ const cases: ComparisonCase[] = [
     id: 'mesh',
     title: 'Sepatu Lari Mesh',
     treatment: 'Deep Clean',
-    note: 'Debu yang masuk ke pori-pori mesh dan bau keringat hilang tuntas, serabut tetap utuh.',
+    note: 'Debu pori mesh & bau keringat hilang, serat tetap utuh.',
     beforeImage: '/images/mesh-before.svg', // Ganti ke /images/mesh-before.webp
     afterImage: '/images/mesh-after.svg',   // Ganti ke /images/mesh-after.webp
     beforeAlt: 'Sepatu lari bahan mesh berdebu sebelum dicuci',
@@ -42,8 +40,8 @@ const cases: ComparisonCase[] = [
   {
     id: 'suede',
     title: 'Sneakers Bahan Suede',
-    treatment: 'Deep Clean Khusus Suede',
-    note: 'Dibersihkan minim air agar warna tidak luntur, lalu disikat ulang supaya bulu suede lembut lagi.',
+    treatment: 'Deep Clean Suede',
+    note: 'Warna rata tanpa luntur, bulu suede kembali halus.',
     beforeImage: '/images/suede-before.svg', // Ganti ke /images/suede-before.webp
     afterImage: '/images/suede-after.svg',   // Ganti ke /images/suede-after.webp
     beforeAlt: 'Sepatu bahan suede bernoda air sebelum dicuci',
@@ -52,21 +50,21 @@ const cases: ComparisonCase[] = [
 ];
 ---
 
-<section id="hasil" class="border-t border-zinc-200 bg-zinc-50 py-14 sm:py-20">
+<section id="hasil" class="border-t border-zinc-200 bg-zinc-50 py-11 sm:py-16">
   <div class="mx-auto max-w-5xl px-4 sm:px-6">
-    <div class="max-w-xl" data-reveal>
+    <div class="max-w-lg" data-reveal>
       <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
         Bukti Pengerjaan
       </p>
-      <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+      <h2 class="mt-1.5 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
         Geser untuk lihat bedanya
       </h2>
-      <p class="mt-2 text-sm leading-relaxed text-zinc-600 sm:text-base">
-        Tiap bahan punya cara cuci berbeda. Tarik garis tengah ke kiri atau kanan untuk membandingkan kondisi sebelum dan sesudah dikerjakan.
+      <p class="mt-1.5 text-sm text-zinc-600">
+        Tarik garis tengah ke kiri atau kanan.
       </p>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
       {
         cases.map((item, idx) => (
           <article
@@ -79,7 +77,6 @@ const cases: ComparisonCase[] = [
               data-ba-container
               data-ba-demo={idx === 0 ? 'true' : undefined}
             >
-              {/* Gambar SESUDAH (lapisan bawah) */}
               <img
                 src={item.afterImage}
                 alt={item.afterAlt}
@@ -90,7 +87,6 @@ const cases: ComparisonCase[] = [
                 class="pointer-events-none h-full w-full object-cover"
               />
 
-              {/* Gambar SEBELUM (lapisan atas yang dipotong via clip-path) */}
               <div
                 data-ba-before
                 class="pointer-events-none absolute inset-0"
@@ -107,7 +103,6 @@ const cases: ComparisonCase[] = [
                 />
               </div>
 
-              {/* Label Sebelum & Sesudah */}
               <span class="pointer-events-none absolute top-2.5 left-2.5 rounded-md bg-zinc-900/85 px-2 py-0.5 text-[11px] font-bold tracking-wide text-white">
                 Sebelum
               </span>
@@ -115,7 +110,6 @@ const cases: ComparisonCase[] = [
                 Sesudah
               </span>
 
-              {/* Garis pembatas & handle */}
               <div
                 data-ba-divider
                 class="pointer-events-none absolute inset-y-0 w-0.5 bg-white"
@@ -138,7 +132,6 @@ const cases: ComparisonCase[] = [
                 </div>
               </div>
 
-              {/* Native Range Input untuk dukungan mouse, keyboard, dan touch di HP */}
               <input
                 type="range"
                 min="0"
@@ -150,10 +143,12 @@ const cases: ComparisonCase[] = [
               />
             </div>
 
-            <div class="flex flex-1 flex-col p-4">
-              <h3 class="text-base font-bold text-zinc-900">{item.title}</h3>
-              <p class="mt-1 text-xs font-semibold text-emerald-700">{item.treatment}</p>
-              <p class="mt-2 text-sm leading-relaxed text-zinc-600">{item.note}</p>
+            <div class="p-4">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="text-sm font-bold text-zinc-900 sm:text-base">{item.title}</h3>
+              </div>
+              <p class="mt-0.5 text-xs font-semibold text-emerald-700">{item.treatment}</p>
+              <p class="mt-1.5 text-xs leading-relaxed text-zinc-600 sm:text-sm">{item.note}</p>
             </div>
           </article>
         ))
@@ -198,7 +193,6 @@ const cases: ComparisonCase[] = [
 
     setVisual(Number(input.value));
 
-    // Auto-demo sapuan sekali pada kartu pertama saat masuk layar
     if (
       container.dataset.baDemo === 'true' &&
       !prefersReducedMotion &&
@@ -218,7 +212,6 @@ const cases: ComparisonCase[] = [
             const animate = (now: number) => {
               if (demoCancelled) return;
               const progress = Math.min((now - startTime) / duration, 1);
-              // Gelombang halus: 50 -> 74 -> 26 -> 50
               const wave = Math.sin(progress * Math.PI * 2);
               const val = 50 + wave * 24;
               setVisual(val);

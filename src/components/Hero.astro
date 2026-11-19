@@ -9,22 +9,22 @@ const trustBadges = [
 
 const quickHighlights = [
   { value: 'Rp30rb', label: 'Mulai dari' },
-  { value: '1–3 Hari', label: 'Estimasi jadi' },
-  { value: '48 Jam', label: 'Garansi ulang' },
+  { value: '1–3 Hari', label: 'Selesai' },
+  { value: '48 Jam', label: 'Garansi' },
 ];
 
 const marqueeItems = [
   'AMAN UNTUK SUEDE & NUBUCK',
-  'FOTO HASIL DIKIRIM KE WA DULU',
-  'PENGERINGAN BLOWER SUHU RUANG',
+  'FOTO HASIL VIA WA DULU',
+  'BLOWER SUHU RUANG',
   'GARANSI CUCI ULANG 48 JAM',
-  'TANPA DP UNTUK CUCI STANDAR',
+  'TANPA DP CUCI STANDAR',
   'ANTAR-JEMPUT PRAKTIS',
 ];
 ---
 
 <section id="hero" class="relative overflow-hidden bg-zinc-50">
-  <!-- Subtle cleaning bubbles (pure CSS, zero visual clutter) -->
+  <!-- Subtle cleaning bubbles -->
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     <span
       class="clean-bubble absolute bottom-16 left-[7%] h-7 w-7 rounded-full border border-emerald-600/20 bg-emerald-50/60"
@@ -44,39 +44,39 @@ const marqueeItems = [
     ></span>
   </div>
 
-  <div class="relative mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+  <div class="relative mx-auto max-w-5xl px-4 py-9 sm:px-6 sm:py-14">
+    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
       <!-- Copy Utama -->
       <div class="lg:col-span-7">
-        <div class="inline-flex flex-wrap items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 shadow-xs">
-          <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
+        <div class="inline-flex max-w-full flex-wrap items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-semibold text-zinc-700 shadow-xs">
+          <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-600"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-600"></span>
           </span>
-          <span>Slot Jemput Hari Ini Tersedia</span>
+          <span>Slot Jemput Tersedia</span>
           <span class="text-zinc-300" aria-hidden="true">•</span>
-          <span class="text-zinc-500">{siteConfig.serviceArea}</span>
+          <span class="truncate text-zinc-500">{siteConfig.serviceArea}</span>
         </div>
 
-        <h1 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-zinc-900 sm:text-5xl sm:leading-[1.1]">
-          Sepatu kotor balik bersih, aman buat bahan sensitif, tinggal tunggu di rumah.
+        <h1 class="mt-4 text-3xl font-extrabold leading-[1.15] tracking-tight text-zinc-900 sm:text-5xl sm:leading-[1.1]">
+          Sepatu bersih lagi, bahan tetap aman, tinggal tunggu di rumah.
         </h1>
 
-        <p class="mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg">
-          Dicuci manual sesuai bahan (suede, nubuck, mesh, canvas) tanpa merusak lem. Sebelum dikirim balik, <strong class="font-semibold text-zinc-900">foto hasil dikirim ke WA dulu untuk kamu ACC</strong>.
+        <p class="mt-3.5 text-sm leading-relaxed text-zinc-600 sm:text-base">
+          Cuci manual khusus suede, mesh, &amp; canvas. <strong class="font-semibold text-zinc-900">Foto hasil dikirim ke WA dulu untuk kamu ACC</strong> sebelum diantar balik.
         </p>
 
-        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div class="mt-6 flex flex-col gap-2.5 sm:flex-row sm:items-center">
           <a
             href="#booking"
             data-burst
-            class="cta-shine inline-flex items-center justify-center rounded-xl bg-emerald-600 px-6 py-3.5 text-center text-base font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            class="cta-shine inline-flex min-h-12 items-center justify-center rounded-xl bg-emerald-600 px-6 py-3 text-center text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-[0.98] sm:text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
           >
             Pesan Jemput Sekarang
           </a>
           <a
             href="#diagnosa"
-            class="inline-flex items-center justify-center rounded-xl border border-zinc-300 bg-white px-6 py-3.5 text-center text-base font-semibold text-zinc-900 shadow-xs transition-all hover:border-zinc-400 hover:bg-zinc-100 active:scale-[0.98]"
+            class="inline-flex min-h-12 items-center justify-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-center text-sm font-semibold text-zinc-900 shadow-xs transition-all hover:border-zinc-400 hover:bg-zinc-100 active:scale-[0.98] sm:text-base"
           >
             Cek Paket Sepatumu
           </a>
@@ -84,7 +84,7 @@ const marqueeItems = [
 
         {
           siteConfig.promoText && (
-            <p class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 sm:text-sm">
+            <p class="mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 sm:text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -105,17 +105,17 @@ const marqueeItems = [
 
         <ul
           aria-label="Keunggulan layanan"
-          class="mt-8 grid grid-cols-1 gap-3 border-t border-zinc-200 pt-6 sm:grid-cols-3"
+          class="mt-6 flex flex-wrap gap-x-5 gap-y-2.5 border-t border-zinc-200 pt-5"
         >
           {
             trustBadges.map((badge) => (
-              <li class="flex items-center gap-2.5 text-sm font-semibold text-zinc-800">
-                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+              <li class="flex items-center gap-2 text-xs font-semibold text-zinc-800 sm:text-sm">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    class="h-4 w-4"
+                    class="h-3.5 w-3.5"
                     aria-hidden="true"
                   >
                     <path
@@ -132,29 +132,26 @@ const marqueeItems = [
         </ul>
       </div>
 
-      <!-- Animated Sneaker Clean-Sweep Visual Card (Lightweight Pure SVG + CSS) -->
+      <!-- Animated Sneaker Clean-Sweep Visual Card -->
       <div class="lg:col-span-5">
         <div
           data-tilt
-          class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-md sm:p-6"
+          class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-md sm:p-5"
         >
-          <!-- Visual Stage: Dirty -> Clean Live Sweep -->
-          <div class="relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 px-4 pt-5 pb-4">
+          <div class="relative overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 px-3 pt-4 pb-3">
             <div class="flex items-center justify-between text-[11px] font-bold">
               <span class="rounded-md bg-zinc-900 px-2 py-0.5 text-white">LIVE CLEAN DEMO</span>
               <span class="text-emerald-700">Manual • pH Netral</span>
             </div>
 
-            <div class="relative mx-auto mt-3 flex h-44 w-full max-w-[290px] items-center justify-center">
-              <!-- Ground shadow pulsing with float -->
+            <div class="relative mx-auto mt-2 flex h-36 w-full max-w-[260px] items-center justify-center sm:h-40 sm:max-w-[280px]">
               <div
-                class="shoe-shadow absolute bottom-2 h-3.5 w-48 rounded-full bg-zinc-900"
+                class="shoe-shadow absolute bottom-2 h-3 w-44 rounded-full bg-zinc-900"
                 aria-hidden="true"
               ></div>
 
-              <!-- Floating Sneaker Container -->
-              <div class="shoe-float relative h-40 w-full">
-                <!-- Layer 1: Dirty Sneaker (base) -->
+              <div class="shoe-float relative h-36 w-full">
+                <!-- Dirty Sneaker -->
                 <svg
                   viewBox="0 0 320 180"
                   fill="none"
@@ -178,12 +175,10 @@ const marqueeItems = [
                     stroke="#78716c"
                     stroke-width="3.5"
                   />
-                  <!-- Mud & dust stains -->
                   <ellipse cx="105" cy="116" rx="26" ry="11" fill="#a8a29e" opacity="0.8" />
                   <ellipse cx="206" cy="122" rx="32" ry="10" fill="#8c7a6b" opacity="0.65" />
                   <circle cx="268" cy="126" r="12" fill="#9a8470" opacity="0.7" />
                   <ellipse cx="160" cy="148" rx="40" ry="6" fill="#a18a62" opacity="0.75" />
-                  <!-- Laces -->
                   <path
                     d="M156 80l18 10M172 72l18 10M187 65l17 10"
                     stroke="#78716c"
@@ -192,7 +187,7 @@ const marqueeItems = [
                   />
                 </svg>
 
-                <!-- Layer 2: Clean Sneaker (revealed by animated clip-path sweep) -->
+                <!-- Clean Sneaker -->
                 <div class="clean-sweep-layer absolute inset-0">
                   <svg
                     viewBox="0 0 320 180"
@@ -208,7 +203,6 @@ const marqueeItems = [
                       stroke-width="3.5"
                       stroke-linejoin="round"
                     />
-                    <!-- Emerald accent stripe -->
                     <path
                       d="M112 122l44-22"
                       stroke="#059669"
@@ -221,7 +215,6 @@ const marqueeItems = [
                       stroke-width="4"
                       stroke-linecap="round"
                     />
-                    <!-- Crisp bright white midsole -->
                     <rect
                       x="32"
                       y="138"
@@ -241,7 +234,6 @@ const marqueeItems = [
                       stroke-width="2.5"
                       stroke-linecap="round"
                     />
-                    <!-- Crisp laces -->
                     <path
                       d="M156 80l18 10M172 72l18 10M187 65l17 10"
                       stroke="#18181b"
@@ -251,9 +243,9 @@ const marqueeItems = [
                   </svg>
                 </div>
 
-                <!-- Emerald Clean Scan Beam -->
+                <!-- Scan Beam -->
                 <div
-                  class="clean-sweep-beam pointer-events-none absolute inset-y-4 w-1 rounded-full bg-emerald-600"
+                  class="clean-sweep-beam pointer-events-none absolute inset-y-3 w-1 rounded-full bg-emerald-600"
                   aria-hidden="true"
                 ></div>
 
@@ -261,7 +253,7 @@ const marqueeItems = [
                 <svg
                   viewBox="0 0 24 24"
                   fill="#059669"
-                  class="sparkle-pop pointer-events-none absolute top-3 right-5 h-5 w-5"
+                  class="sparkle-pop pointer-events-none absolute top-2 right-5 h-5 w-5"
                   style="--sparkle-delay: 0.4s;"
                   aria-hidden="true"
                 >
@@ -270,7 +262,7 @@ const marqueeItems = [
                 <svg
                   viewBox="0 0 24 24"
                   fill="#10b981"
-                  class="sparkle-pop pointer-events-none absolute bottom-10 left-3 h-4 w-4"
+                  class="sparkle-pop pointer-events-none absolute bottom-8 left-3 h-4 w-4"
                   style="--sparkle-delay: 1.1s;"
                   aria-hidden="true"
                 >
@@ -279,7 +271,7 @@ const marqueeItems = [
                 <svg
                   viewBox="0 0 24 24"
                   fill="#059669"
-                  class="sparkle-pop pointer-events-none absolute top-10 left-12 h-3.5 w-3.5"
+                  class="sparkle-pop pointer-events-none absolute top-8 left-12 h-3.5 w-3.5"
                   style="--sparkle-delay: 1.7s;"
                   aria-hidden="true"
                 >
@@ -289,22 +281,16 @@ const marqueeItems = [
             </div>
           </div>
 
-          <!-- USP & Quick Stats -->
-          <div class="mt-4">
-            <p class="text-sm font-extrabold text-zinc-900">
-              Foto Dulu, ACC Baru Kirim Balik
-            </p>
-            <p class="mt-1 text-xs leading-relaxed text-zinc-600">
-              Laporan foto kondisi awal &amp; hasil akhir via WA. Tanpa DP untuk cuci standar—bayar setelah sepatu dicek.
-            </p>
-          </div>
+          <p class="mt-3.5 text-center text-xs font-semibold text-zinc-700">
+            Foto hasil via WA dulu • Tanpa DP cuci standar
+          </p>
 
-          <div class="mt-4 grid grid-cols-3 gap-2 border-t border-zinc-100 pt-4 text-center">
+          <div class="mt-3 grid grid-cols-3 gap-2 border-t border-zinc-100 pt-3 text-center">
             {
               quickHighlights.map((item) => (
-                <div class="rounded-xl bg-zinc-50 px-2 py-2.5">
-                  <p class="text-sm font-extrabold text-zinc-900 sm:text-base">{item.value}</p>
-                  <p class="mt-0.5 text-[11px] font-medium text-zinc-500">{item.label}</p>
+                <div class="rounded-xl bg-zinc-50 px-2 py-2">
+                  <p class="text-sm font-extrabold text-zinc-900">{item.value}</p>
+                  <p class="text-[11px] font-medium text-zinc-500">{item.label}</p>
                 </div>
               ))
             }
@@ -315,13 +301,13 @@ const marqueeItems = [
   </div>
 
   <!-- Crisp High-Contrast Kinetic USP Marquee -->
-  <div class="marquee-wrap overflow-hidden border-y border-zinc-800 bg-zinc-900 py-3 text-white">
+  <div class="marquee-wrap overflow-hidden border-y border-zinc-800 bg-zinc-900 py-2.5 text-white">
     <div class="marquee-track">
       {
         [0, 1].map((dup) => (
           <div class="flex shrink-0 items-center" aria-hidden={dup === 1 ? 'true' : undefined}>
             {marqueeItems.map((text) => (
-              <span class="inline-flex items-center gap-3 px-5 text-xs font-bold tracking-wider whitespace-nowrap">
+              <span class="inline-flex items-center gap-3 px-4 text-[11px] font-bold tracking-wider whitespace-nowrap sm:px-5 sm:text-xs">
                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
                 <span>{text}</span>
               </span>

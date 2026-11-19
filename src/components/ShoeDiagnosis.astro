@@ -5,35 +5,35 @@ const materials = [
   {
     id: 'suede',
     label: 'Suede & Nubuck',
-    care: 'Dibersihkan minim air pakai cairan pH netral dan sikat bulu lembut (horsehair), lalu disikat ulang setelah kering agar bulu tetap halus.',
-    avoid: 'Tidak direndam air dan tidak dijemur matahari langsung supaya warna tidak luntur atau kaku.',
+    care: 'Cuci minim air pakai sikat bulu halus + pH netral, bulu tetap lembut.',
+    avoid: 'Tanpa direndam & tanpa jemur matahari.',
   },
   {
     id: 'mesh',
-    label: 'Mesh / Sepatu Lari',
-    care: 'Sikat halus searah serat jaring untuk mengangkat debu dan keringat di pori-pori mesh, plus deodorizer anti-bakteri di bagian dalam.',
-    avoid: 'Tidak memakai sikat keras agar jaring mesh tidak berbulu atau ketarik.',
+    label: 'Mesh / Lari',
+    care: 'Sikat halus searah serat jaring + deodorizer anti-bakteri.',
+    avoid: 'Tanpa sikat keras agar pori mesh tidak berbulu.',
   },
   {
     id: 'canvas',
     label: 'Canvas / Putih',
-    care: 'Deep scrubbing bertahap di upper dan midsole dengan sabun khusus kain agar noda lumpur dan kusam terangkat tanpa bikin kain menguning.',
-    avoid: 'Tidak memakai pemutih klorin keras yang bikin kain rapuh dan meninggalkan bercak kuning.',
+    care: 'Deep scrubbing bertahap dengan sabun khusus kain bebas kuning.',
+    avoid: 'Tanpa pemutih klorin yang bikin kain rapuh.',
   },
   {
     id: 'leather',
     label: 'Kulit / Leather',
-    care: 'Pembersihan lembut dengan lap microfiber dan foam khusus kulit, dilanjutkan pelembap ringan agar permukaan tidak pecah-pecah.',
-    avoid: 'Tidak dicuci pakai deterjen biasa yang mengikis lapisan pelindung kulit.',
+    care: 'Microfiber + foam khusus kulit & pelembap ringan.',
+    avoid: 'Tanpa deterjen keras yang bikin kulit retak.',
   },
 ];
 
 const issues = [
-  { id: 'light', label: 'Kotor Ringan / Debu Harian', serviceId: 'fast-clean' },
-  { id: 'heavy', label: 'Kotor Berat & Bau Apek', serviceId: 'deep-clean' },
-  { id: 'yellow', label: 'Midsole Menguning', serviceId: 'unyellowing' },
-  { id: 'sole', label: 'Sol Menganga / Lem Lepas', serviceId: 'reglue' },
-  { id: 'faded', label: 'Warna Pudar / Belang', serviceId: 'repaint' },
+  { id: 'light', label: 'Kotor Ringan', serviceId: 'fast-clean' },
+  { id: 'heavy', label: 'Kotor Berat & Bau', serviceId: 'deep-clean' },
+  { id: 'yellow', label: 'Midsole Kuning', serviceId: 'unyellowing' },
+  { id: 'sole', label: 'Sol / Lem Lepas', serviceId: 'reglue' },
+  { id: 'faded', label: 'Warna Pudar', serviceId: 'repaint' },
 ];
 
 const defaultMaterial = materials[0];
@@ -52,17 +52,17 @@ const diagnosisPayload = JSON.stringify({
 });
 ---
 
-<section id="diagnosa" class="bg-white py-14 sm:py-20">
+<section id="diagnosa" class="bg-white py-11 sm:py-16">
   <div class="mx-auto max-w-5xl px-4 sm:px-6">
-    <div class="max-w-xl" data-reveal>
+    <div class="max-w-lg" data-reveal>
       <p class="text-xs font-bold uppercase tracking-wider text-emerald-600">
-        Diagnosa Sepatu 10 Detik
+        Diagnosa 10 Detik
       </p>
-      <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
-        Bingung pilih paket? Cek sesuai bahan &amp; kondisinya
+      <h2 class="mt-1.5 text-2xl font-extrabold tracking-tight text-zinc-900 sm:text-3xl">
+        Bingung pilih paket? Cek di sini
       </h2>
-      <p class="mt-2 text-sm leading-relaxed text-zinc-600 sm:text-base">
-        Pilih bahan dan keluhan sepatumu di bawah. Kami langsung kasih tahu cara penanganannya dan paket yang paling pas.
+      <p class="mt-1.5 text-sm text-zinc-600">
+        Tap bahan &amp; kondisi sepatumu—langsung ketemu paket paling pas.
       </p>
     </div>
 
@@ -71,15 +71,15 @@ const diagnosisPayload = JSON.stringify({
       data-payload={diagnosisPayload}
       data-reveal
       style="--reveal-delay: 80ms;"
-      class="mt-8 grid grid-cols-1 gap-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 sm:p-7 lg:grid-cols-12"
+      class="mt-6 grid grid-cols-1 gap-5 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 sm:p-6 lg:grid-cols-12"
     >
       <!-- Pilihan Bahan & Kondisi -->
-      <div class="space-y-6 lg:col-span-7">
+      <div class="space-y-5 lg:col-span-7">
         <div>
           <p class="text-xs font-bold uppercase tracking-wider text-zinc-500">
-            1. Bahan Sepatu Kamu
+            1. Bahan Sepatu
           </p>
-          <div class="mt-2.5 flex flex-wrap gap-2" role="group" aria-label="Pilih bahan sepatu">
+          <div class="mt-2 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap" role="group" aria-label="Pilih bahan sepatu">
             {
               materials.map((mat) => (
                 <button
@@ -87,7 +87,7 @@ const diagnosisPayload = JSON.stringify({
                   data-diag-material={mat.id}
                   aria-pressed={mat.id === defaultMaterial.id ? 'true' : 'false'}
                   class:list={[
-                    'cursor-pointer rounded-xl border px-3.5 py-2 text-sm font-semibold transition-all active:scale-[0.98]',
+                    'cursor-pointer rounded-xl border px-3 py-2.5 text-xs font-semibold transition-all active:scale-[0.98] sm:px-3.5 sm:text-sm',
                     mat.id === defaultMaterial.id
                       ? 'border-emerald-600 bg-emerald-600 text-white'
                       : 'border-zinc-300 bg-white text-zinc-800 hover:border-zinc-400 hover:bg-zinc-100',
@@ -104,7 +104,7 @@ const diagnosisPayload = JSON.stringify({
           <p class="text-xs font-bold uppercase tracking-wider text-zinc-500">
             2. Kondisi Saat Ini
           </p>
-          <div class="mt-2.5 flex flex-wrap gap-2" role="group" aria-label="Pilih kondisi sepatu">
+          <div class="mt-2 flex flex-wrap gap-2" role="group" aria-label="Pilih kondisi sepatu">
             {
               issues.map((issue) => (
                 <button
@@ -112,7 +112,7 @@ const diagnosisPayload = JSON.stringify({
                   data-diag-issue={issue.id}
                   aria-pressed={issue.id === defaultIssue.id ? 'true' : 'false'}
                   class:list={[
-                    'cursor-pointer rounded-xl border px-3.5 py-2 text-sm font-semibold transition-all active:scale-[0.98]',
+                    'cursor-pointer rounded-xl border px-3 py-2 text-xs font-semibold transition-all active:scale-[0.98] sm:px-3.5 sm:text-sm',
                     issue.id === defaultIssue.id
                       ? 'border-zinc-900 bg-zinc-900 text-white'
                       : 'border-zinc-300 bg-white text-zinc-800 hover:border-zinc-400 hover:bg-zinc-100',
@@ -131,38 +131,32 @@ const diagnosisPayload = JSON.stringify({
         <div
           id="diag-result-card"
           data-tilt
-          class="flex h-full flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm hover:shadow-md"
+          class="flex h-full flex-col justify-between rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm hover:shadow-md sm:p-5"
         >
           <div>
             <div class="flex items-center justify-between gap-2">
               <span class="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
-                Rekomendasi Paket
+                Rekomendasi
               </span>
               <span id="diag-eta" class="text-xs font-semibold text-zinc-500">
-                Estimasi {defaultService.eta}
+                {defaultService.eta}
               </span>
             </div>
 
-            <div class="mt-3 flex items-baseline justify-between gap-3">
-              <h3 id="diag-service-name" class="text-xl font-extrabold text-zinc-900">
+            <div class="mt-2.5 flex items-baseline justify-between gap-2">
+              <h3 id="diag-service-name" class="text-lg font-extrabold text-zinc-900 sm:text-xl">
                 {defaultService.name}
               </h3>
-              <span id="diag-service-price" class="text-lg font-extrabold text-emerald-600">
+              <span id="diag-service-price" class="text-base font-extrabold text-emerald-600 sm:text-lg">
                 {defaultService.priceLabel}
               </span>
             </div>
 
-            <div class="mt-4 space-y-3 border-t border-zinc-100 pt-4 text-sm">
-              <div>
-                <p class="text-xs font-bold text-zinc-900">Cara kami tangani:</p>
-                <p id="diag-care" class="mt-1 leading-relaxed text-zinc-600">
-                  {defaultMaterial.care}
-                </p>
-              </div>
-              <div class="rounded-xl bg-zinc-50 p-3 text-xs leading-relaxed text-zinc-600">
-                <span class="font-bold text-zinc-900">Yang kami hindari: </span>
-                <span id="diag-avoid">{defaultMaterial.avoid}</span>
-              </div>
+            <div class="mt-3 space-y-2 border-t border-zinc-100 pt-3 text-xs leading-relaxed sm:text-sm">
+              <p id="diag-care" class="text-zinc-700">{defaultMaterial.care}</p>
+              <p class="rounded-lg bg-zinc-50 px-2.5 py-2 text-xs text-zinc-600">
+                <strong class="text-zinc-900">Aman:</strong> <span id="diag-avoid">{defaultMaterial.avoid}</span>
+              </p>
             </div>
           </div>
 
@@ -170,7 +164,7 @@ const diagnosisPayload = JSON.stringify({
             type="button"
             id="diag-apply-btn"
             data-burst
-            class="mt-5 inline-flex w-full cursor-pointer items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white shadow-xs transition-all hover:bg-emerald-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            class="mt-4 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs transition-all hover:bg-emerald-700 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
           >
             Pakai Rekomendasi Ini
           </button>
@@ -249,7 +243,7 @@ const diagnosisPayload = JSON.stringify({
 
       if (serviceNameEl) serviceNameEl.textContent = service.name;
       if (servicePriceEl) servicePriceEl.textContent = service.priceLabel;
-      if (etaEl) etaEl.textContent = `Estimasi ${service.eta}`;
+      if (etaEl) etaEl.textContent = service.eta;
       if (careEl) careEl.textContent = mat.care;
       if (avoidEl) avoidEl.textContent = mat.avoid;
 

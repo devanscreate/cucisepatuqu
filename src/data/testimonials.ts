@@ -13,15 +13,15 @@ export const testimonials: TestimonialItem[] = [
     shoeType: 'NB 574 Suede',
     serviceUsed: 'Deep Clean',
     quote:
-      'Awalnya ragu cuci suede karena pernah rusak di tempat lain. Di sini sebelum dikirim balik dikirimin foto hasilnya dulu, bulu suede-nya tetap halus dan warnanya nggak luntur.',
+      'Sebelum dikirim balik difotoin dulu hasilnya. Bulu suede tetap halus dan warna nggak luntur.',
   },
   {
     name: 'Nadia S.',
     area: 'Kuningan',
-    shoeType: 'Sneakers Kanvas Putih',
+    shoeType: 'Kanvas Putih',
     serviceUsed: 'Deep Clean + Unyellowing',
     quote:
-      'Praktis banget, tinggal titip di resepsionis kantor pas jam makan siang. 3 hari kemudian balik udah putih bersih lagi, bagian midsole kuningnya jauh berkurang.',
+      'Tinggal titip di resepsionis kantor. 3 hari balik udah putih bersih lagi, midsole kuning jauh berkurang.',
   },
   {
     name: 'Fajar W.',
@@ -29,6 +29,6 @@ export const testimonials: TestimonialItem[] = [
     shoeType: 'Sepatu Lari Mesh',
     serviceUsed: 'Deep Clean',
     quote:
-      'Sepatu lari habis kehujanan jadi apek parah. Setelah masuk sini baunya hilang total, jaring mesh-nya juga nggak ada yang ketarik atau berbulu.',
+      'Habis kehujanan bau apek parah, sekarang hilang total. Jaring mesh juga aman, nggak ada yang ketarik.',
   },
 ];
